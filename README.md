@@ -1,11 +1,11 @@
 # Github Repo API
 
-## Opis
+## Description
 
-Aplikacja w Spring Boot udostępniająca endpoint HTTP zwracający repozytoria użytkownika GitHub, które nie są forkami.
-Dla każdego repozytorium podaje również informacje na temat branchów i ostatnim commicie.
+A Spring Boot application exposing an HTTP endpoint that returns a GitHub user's repositories that are not forks.
+For each repository, it also provides information about its branches and the latest commit.
 
-## Uzyte technologie
+## Technologies Used
 - Java 21
 - Spring Boot 3.5.3
 - Spring WEB
@@ -17,39 +17,36 @@ Dla każdego repozytorium podaje również informacje na temat branchów i ostat
 
 'GET /github/{username}/repositories'
 
-Zwraca listę publicznych repozytorów użytkownika:
-Repozytorium zawiera:
+Returns a list of the user's public repositories.
+Each repository includes:
 
 - repositoryName
 - ownerLogin
-- branches[], które zawierają:
+- branches[], each containing:
   - name
   - lastCommitSha
 
-## Obsługa błędów
-W przypadku nieistniejącego użytkownika GitHub, aplikacja zwraca 404 w formacie:
-
+## Error Handling
+If the GitHub user does not exist, the application returns a 404 error in the following format:
 
 
     "status": 404,
     "message": "User not found"
 
 
-# Urochamianie projeku lokalnie
-### Wymagania
+# Running the Project
+### Requirements
 - Java 21
 - Maven
 
-### Uruchomienie
-Uruchomienie aplikacji w IDE poprzed uruchomienie klasy GithubApiApplication
-
-lub 
+### Running
+Run the application in IDE by executing the GithubApiApplication class or use:
 
     ./mvnw spring-boot:run
 
 # Test
 
-Został zaimplementowany jeden test integracyjny GitHubApiIntegrationTest, który:
-- Weryfikuje popraną odpowiedź, "200 OK", dla instniejącego użytkownika
-- Sprawdz czy repozytoria i branche są zwrócone poprawnie
-- Działa na realnym API GitHub zamiast używania mocków
+An integration test GitHubApiIntegrationTest has been implemented, which:
+- Verifies a successful 200 OK response for an existing user
+- Checks if repositories and branches are returned correctly
+- Uses the real GitHub API instead of mocks
